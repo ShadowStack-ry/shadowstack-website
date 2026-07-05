@@ -3,7 +3,7 @@ export const site = {
   name: "ShadowStack",
   tagline: "Joensuu's clan of AI natives",
   lumaUrl: "https://lu.ma/shadowstack",
-  email: "hello@shadowstack.xyz",
+  email: "hello@shadowstack.sh",
   location: "Joensuu · North Karelia, Finland",
   socials: [
     { label: "Luma", href: "https://lu.ma/shadowstack" },

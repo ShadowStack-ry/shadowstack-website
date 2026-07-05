@@ -8,7 +8,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://shadowstack.xyz"),
+  metadataBase: new URL("https://shadowstack.sh"),
   title: {
     default: "ShadowStack — Joensuu's clan of AI natives",
     template: "%s · ShadowStack",
