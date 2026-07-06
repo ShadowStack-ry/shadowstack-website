@@ -2,9 +2,10 @@ import { Button } from "@/components/ui/button";
 import { site } from "@/lib/site";
 
 const links = [
-  { label: "Jams", href: "#jams" },
-  { label: "Feedback", href: "#feedback" },
-  { label: "About", href: "#about" },
+  { label: "Jams", href: "/#jams" },
+  { label: "Feedback", href: "/#feedback" },
+  { label: "About", href: "/#about" },
+  { label: "Blog", href: "/blog" },
 ];
 
 export function Header() {
@@ -12,7 +13,7 @@ export function Header() {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/70 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <a
-          href="#top"
+          href="/"
           className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em]"
         >
           <span className="inline-block size-3 bg-primary" aria-hidden />

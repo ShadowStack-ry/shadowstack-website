@@ -41,6 +41,13 @@ export const blogPost = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "authors",
+      title: "Authors",
+      type: "array",
+      of: [defineArrayMember({ type: "reference", to: [{ type: "author" }] })],
+      validation: (rule) => rule.required().min(1),
+    }),
+    defineField({
       name: "coverImage",
       title: "Cover Image",
       type: "image",
