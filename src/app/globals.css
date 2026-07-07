@@ -108,6 +108,11 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    /* Offset anchor landings for the fixed header (native jumps, e.g. from
+       other pages). In-page nav uses GSAP easing in the header. */
+    scroll-padding-top: 4.5rem;
+  }
   body {
     @apply bg-background text-foreground font-mono antialiased;
   }
