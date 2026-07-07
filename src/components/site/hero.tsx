@@ -7,7 +7,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[94vh] flex-col justify-end overflow-hidden pt-28"
+      className="relative min-h-[94vh] overflow-hidden pt-28"
     >
       {/* ambient green glow */}
       <div
@@ -38,9 +38,9 @@ export function Hero() {
         </div>
       </div>
 
-      {/* infinite smile gallery, lifted off the bottom so the base of the
-          section stays on clear background */}
-      <div className="relative z-10 pb-24 sm:pb-32">
+      {/* infinite smile gallery, pinned to the bottom and pushed mostly below
+          the fold so only the tops of the images peek up from the base */}
+      <div className="absolute inset-x-0 bottom-0 z-10 translate-y-[55%]">
         <SmileGallery />
       </div>
     </section>

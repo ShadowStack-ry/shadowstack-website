@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ScrollMotionBlur } from "@/components/site/scroll-motion-blur";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -43,7 +44,10 @@ export default function RootLayout({
       lang="en"
       className={`dark ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        <ScrollMotionBlur />
+        {children}
+      </body>
     </html>
   );
 }

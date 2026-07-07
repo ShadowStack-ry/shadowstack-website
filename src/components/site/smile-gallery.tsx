@@ -44,8 +44,8 @@ export function SmileGallery() {
 
       const computeLayout = () => {
         const vw = container.clientWidth;
-        const itemW = Math.round(clamp(vw / 5, 168, 268));
-        const itemH = Math.round(itemW * 1.34);
+        const itemW = Math.round(clamp(vw / 5.5, 160, 240));
+        const itemH = Math.round(itemW * 1.32);
         // Negative gap => neighbouring images overlap for a layered stack look.
         const gap = Math.round(itemW * -0.14);
         const spacing = itemW + gap;
@@ -170,8 +170,8 @@ export function SmileGallery() {
             transition: "opacity 500ms ease",
           }}
         >
-          <div className="relative h-full w-full origin-center transition-transform duration-300 ease-out group-hover:scale-[1.12]">
-            <div className="h-full w-full overflow-hidden border border-border bg-card shadow-lg shadow-black/40 ring-1 ring-black/5">
+          <div className="relative h-full w-full origin-center transition-transform duration-300 ease-out group-hover:scale-[1.08]">
+            <div className="h-full w-full overflow-hidden">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={n.item.src}

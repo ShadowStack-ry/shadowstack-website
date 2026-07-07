@@ -116,6 +116,13 @@
   body {
     @apply bg-background text-foreground font-mono antialiased;
   }
+  /* Subtle scroll motion blur. --scroll-blur is driven by ScrollMotionBlur and
+     eases back to 0 when idle. The fixed header is excluded so it stays put. */
+  main,
+  footer {
+    filter: blur(var(--scroll-blur, 0));
+    will-change: filter;
+  }
   ::selection {
     background: var(--primary);
     color: var(--primary-foreground);
