@@ -1,5 +1,6 @@
 "use client";
 
+import type React from "react";
 import { useRef, useState } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -26,6 +27,8 @@ export function SmileGallery() {
   const containerRef = useRef<HTMLDivElement>(null);
   const itemEls = useRef<Array<HTMLDivElement | null>>([]);
   const pausedRef = useRef(false);
+  const draggingRef = useRef(false);
+  const lastXRef = useRef(0);
   const progressRef = useRef(0);
 
   const [size, setSize] = useState({ itemW: 180, itemH: 240, containerH: 380 });
@@ -41,9 +44,10 @@ export function SmileGallery() {
 
       const computeLayout = () => {
         const vw = container.clientWidth;
-        const itemW = Math.round(clamp(vw / 6.5, 132, 208));
+        const itemW = Math.round(clamp(vw / 5, 168, 268));
         const itemH = Math.round(itemW * 1.34);
-        const gap = Math.round(itemW * 0.18);
+        // Negative gap => neighbouring images overlap for a layered stack look.
+        const gap = Math.round(itemW * -0.14);
         const spacing = itemW + gap;
         const amp = Math.min(vw * 0.12, 150);
         const containerH = Math.round(itemH + amp + 8);
@@ -88,7 +92,8 @@ export function SmileGallery() {
       ).matches;
 
       const tick = (_time: number, deltaTime: number) => {
-        if (!pausedRef.current) {
+        // Auto-advance only when the user isn't hovering or dragging.
+        if (!pausedRef.current && !draggingRef.current) {
           progressRef.current += (deltaTime / 1000) * SPEED;
         }
         render();
@@ -110,11 +115,43 @@ export function SmileGallery() {
     { scope: containerRef }
   );
 
+  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    draggingRef.current = true;
+    lastXRef.current = e.clientX;
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+
+  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!draggingRef.current) return;
+    const dx = e.clientX - lastXRef.current;
+    lastXRef.current = e.clientX;
+    // Drag right => strip moves right => progress decreases.
+    progressRef.current -= dx;
+  };
+
+  const endDrag = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!draggingRef.current) return;
+    draggingRef.current = false;
+    e.currentTarget.releasePointerCapture?.(e.pointerId);
+  };
+
+  // Horizontal wheel / trackpad swipe scrolls the strip; vertical wheel is
+  // left to the page so it never traps scrolling.
+  const onWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+    if (Math.abs(e.deltaX) < 1) return;
+    progressRef.current += e.deltaX;
+  };
+
   return (
     <div
       ref={containerRef}
-      className="relative w-full overflow-hidden"
+      className="relative w-full cursor-grab touch-pan-y overflow-hidden active:cursor-grabbing"
       style={{ height: size.containerH }}
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={endDrag}
+      onPointerCancel={endDrag}
+      onWheel={onWheel}
       aria-hidden="true"
     >
       {nodes.map((n, j) => (

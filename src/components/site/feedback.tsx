@@ -12,9 +12,16 @@ export function Feedback() {
           <p className="text-xs uppercase tracking-[0.35em] text-primary">
             From the community
           </p>
-          <h2 className="mt-4 max-w-3xl text-3xl font-semibold uppercase leading-tight tracking-tight sm:text-5xl">
-            What builders say
-          </h2>
+          <div className="mt-4 flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
+            <h2 className="text-3xl font-semibold uppercase leading-tight tracking-tight sm:text-5xl">
+              What ninjas
+              <sup className="align-super text-[0.5em] text-primary">*</sup> say
+            </h2>
+            <p className="pb-1 text-xs uppercase tracking-widest text-muted-foreground">
+              <span className="text-primary">*</span> A ninja is a member of
+              the ShadowStack clan
+            </p>
+          </div>
         </Reveal>
 
         <Reveal stagger className="mt-14 grid gap-6 sm:grid-cols-2">

@@ -15,16 +15,15 @@ export function Hero() {
         className="pointer-events-none absolute left-1/2 top-[38%] -z-10 h-[520px] w-[820px] max-w-[95vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/20 blur-[130px]"
       />
 
-      {/* headline sits in the open space above the smile's dip */}
-      <div className="pointer-events-none absolute left-1/2 top-[20%] z-20 w-full -translate-x-1/2 px-6 text-center">
-        <p className="mb-5 text-xs uppercase tracking-[0.35em] text-muted-foreground">
-          {site.name} · {site.location.split("·")[0].trim()}
-        </p>
-        <h1 className="mx-auto max-w-4xl text-balance text-4xl font-semibold uppercase leading-[1.05] tracking-tight sm:text-6xl">
+      {/* headline sits in the open space above the smile's dip.
+          The wrapper stays pointer-events-none so the gallery behind it can be
+          hovered; individual text elements opt back in so they're selectable. */}
+      <div className="pointer-events-none absolute left-1/2 top-[18%] z-20 w-full -translate-x-1/2 px-6 text-center">
+        <h1 className="pointer-events-auto mx-auto max-w-5xl text-balance text-5xl font-semibold uppercase leading-[1.02] tracking-tight sm:text-7xl lg:text-8xl">
           Joensuu&apos;s clan of{" "}
           <span className="text-primary">AI natives</span>
         </h1>
-        <p className="mx-auto mt-6 max-w-xl text-pretty text-sm text-muted-foreground sm:text-base">
+        <p className="pointer-events-auto mx-auto mt-6 max-w-xl text-pretty text-sm text-muted-foreground sm:text-base">
           A community of builders shipping real products in real time — coding
           jams, nano-hacks, and events where the next wave of AI-native startups
           gets built.
@@ -39,8 +38,9 @@ export function Hero() {
         </div>
       </div>
 
-      {/* infinite smile gallery, pinned to the bottom of the hero */}
-      <div className="relative z-10 pb-10">
+      {/* infinite smile gallery, lifted off the bottom so the base of the
+          section stays on clear background */}
+      <div className="relative z-10 pb-24 sm:pb-32">
         <SmileGallery />
       </div>
     </section>
