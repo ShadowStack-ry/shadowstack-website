@@ -176,7 +176,7 @@ export function SmileGallery() {
               <img
                 src={n.item.src}
                 alt={`${n.item.eventName} — ${n.item.description}`}
-                loading="lazy"
+                loading="eager"
                 draggable={false}
                 className="h-full w-full select-none object-cover grayscale transition-all duration-300 group-hover:grayscale-0"
               />

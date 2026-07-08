@@ -5,15 +5,15 @@ import { site } from "@/lib/site";
 
 export function Hero() {
   return (
-    <section
-      id="top"
-      className="relative min-h-[94vh] overflow-hidden pt-28"
-    >
-      {/* ambient green glow */}
+    <section id="top" className="relative min-h-[94vh] pt-28">
+      {/* clips only the ambient glow, not the gallery which is allowed to
+          overflow the section and sit on top of the next one */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-[38%] -z-10 h-[520px] w-[820px] max-w-[95vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/20 blur-[130px]"
-      />
+        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+      >
+        <div className="absolute left-1/2 top-[38%] h-[520px] w-[820px] max-w-[95vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/20 blur-[130px]" />
+      </div>
 
       {/* headline sits in the open space above the smile's dip.
           The wrapper stays pointer-events-none so the gallery behind it can be
@@ -38,9 +38,9 @@ export function Hero() {
         </div>
       </div>
 
-      {/* infinite smile gallery, pinned to the bottom and pushed mostly below
-          the fold so only the tops of the images peek up from the base */}
-      <div className="absolute inset-x-0 bottom-0 z-10 translate-y-[55%]">
+      {/* infinite smile gallery, pinned to the bottom and allowed to overflow
+          the section (on top of the next one) so images are never clipped */}
+      <div className="absolute inset-x-0 bottom-0 z-30 translate-y-[22%]">
         <SmileGallery />
       </div>
     </section>
