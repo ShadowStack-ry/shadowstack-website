@@ -1,4 +1,7 @@
+import Image from "next/image";
 import type { Metadata } from "next";
+
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: { absolute: "ShadowStack" },
@@ -19,15 +22,23 @@ export const metadata: Metadata = {
 // See src/proxy.ts — delete it to put the real site back.
 export default function ComingSoon() {
   return (
-    <main className="relative flex min-h-screen items-center justify-center overflow-hidden px-6">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[420px] w-[680px] max-w-[95vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/20 blur-[130px]"
-      />
-      <h1 className="text-balance text-center text-3xl font-semibold uppercase leading-tight tracking-tight sm:text-5xl">
-        Cool <span className="text-primary">ShadowStack</span> site will be
-        here soon...
-      </h1>
+    <main className="flex min-h-screen items-center justify-center bg-[#111111]">
+      <a
+        href={site.lumaUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block w-full"
+      >
+        <Image
+          src="/coming-soon.png"
+          alt="ShadowStack — luma.com/shadowstack"
+          width={1920}
+          height={1080}
+          priority
+          sizes="100vw"
+          className="h-auto max-h-screen w-full object-contain"
+        />
+      </a>
     </main>
   );
 }
